@@ -47,28 +47,86 @@ body {
 	height: 35px;
 	/* width is automatically set by browser */
 }
+/* .logo:hover {
+	animation: moveInRight 1s ease-out;
+} */
 .text-box {
 	position: absolute;
-	top: 50%;
+	top: 40%;
 	left: 50%;
 	/* background-color: #bbb; */
 	transform: translate(-50%, -50%);
+	/* transform is in relation to the element itself */
 }
 
 .heading-primary {
 	color: #fff;
 	text-transform: uppercase;
 	display: block;
+	backface-visibility: hidden;
+	/* fix for shaky animation */
 }
 .heading-primary-main {
 	display: block;
 	font-size: 60px;
 	font-weight: 400;
 	letter-spacing: 35px;
+	animation-name: moveInLeft;
+	animation-duration: 1s;
+	animation-timing-function: ease-out;
+	/* animation-iteration-count: 3; */
+	/* animation-delay: 3s; */
 }
 .heading-primary-sub {
 	display: block;
 	font-size: 20px;
 	font-weight: 700;
 	letter-spacing: 17.4px;
+	/* animation-name: moveInRight;
+	animation-duration: 1s;
+	animation-timing-function: ease-out; */
+	animation: moveInRight 1s ease-out;
+}
+
+@keyframes moveInLeft {
+	0% {
+		opacity: 0;
+		transform: translateX(-100px);
+	}
+	80% {
+		transform: translateX(10px);
+	}
+
+	100% {
+		opacity: 1;
+		transform: translateX(0);
+	}
+}
+@keyframes moveInLeft {
+	0% {
+		opacity: 0;
+		transform: translateX(-100px);
+	}
+	80% {
+		transform: translateX(10px);
+	}
+
+	100% {
+		opacity: 1;
+		transform: translateX(0);
+	}
+}
+@keyframes moveInRight {
+	0% {
+		opacity: 0;
+		transform: translateX(100px);
+	}
+	80% {
+		transform: translateX(-10px);
+	}
+
+	100% {
+		opacity: 1;
+		transform: translateX(0);
+	}
 }
