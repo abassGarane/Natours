@@ -65,7 +65,7 @@ body {
 	text-transform: uppercase;
 	display: block;
 	backface-visibility: hidden;
-	margin-bottom: 16px;
+	margin-bottom: 50px;
 	/* fix for shaky animation */
 }
 .heading-primary-main {
@@ -73,11 +73,12 @@ body {
 	font-size: 60px;
 	font-weight: 400;
 	letter-spacing: 35px;
-	animation-name: moveInLeft;
+	/* animation-name: moveInLeft;
 	animation-duration: 1s;
-	animation-timing-function: ease-out;
+	animation-timing-function: ease-out; */
 	/* animation-iteration-count: 3; */
 	/* animation-delay: 3s; */
+	animation: moveInLeft 1s ease-out;
 }
 .heading-primary-sub {
 	display: block;
@@ -132,6 +133,16 @@ body {
 		transform: translateX(0);
 	}
 }
+@keyframes moveInBottom {
+	0% {
+		opacity: 0;
+		transform: translateY(30px);
+	}
+	100% {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
 
 .btn:link,
 .btn:visited {
@@ -142,6 +153,7 @@ body {
 	display: inline-block;
 	border-radius: 100px;
 	transition: all 0.2s ease-in;
+	position: relative;
 }
 .btn:hover {
 	transform: translateY(-3px);
@@ -156,4 +168,36 @@ body {
 .btn-white {
 	background-color: #fff;
 	color: #777;
+}
+
+.btn::after {
+	content: '';
+	display: inline-block;
+	/* is child of btn */
+	height: 100%;
+	width: 100%;
+	border-radius: 100px;
+	/* position it on top */
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: -1;
+	transition: all 0.4s;
+}
+
+.btn-white::after {
+	background-color: #fff;
+}
+/* styles on ::after after hover */
+.btn:hover::after {
+	transform: scaleX(1.5) scaleY(1.6);
+	opacity: 0;
+	/* trick to fadeout element */
+}
+
+.btn-animated {
+	animation: moveInBottom 0.5s ease-out 0.75s;
+	/* animation-delay: 0.5s; */
+	/* applies styles of keyframes after refresh */
+	animation-fill-mode: backwards;
 }
